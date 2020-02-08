@@ -1,0 +1,40 @@
+-r requirements.txt
+
+# Test & lint packages
+coverage==5.0.3
+mock==3.0.5
+placebo==0.9.0
+flake8==3.7.9
+pytest
+pytest-xdist
+pytest-cov==2.8.1
+twine
+tox==3.14.3
+six >= 1.12.0
+
+# Optional feature testing in c7n
+psutil==5.6.7
+aws_xray_sdk==2.4.3
+importlib_metadata==1.4.0
+
+-r tools/c7n_mailer/requirements.txt
+-r tools/c7n_azure/requirements.txt
+-r tools/c7n_gcp/requirements.txt
+-r tools/c7n_kube/requirements.txt
+
+# Specific to testing mailer
+fakeredis==1.1.0
+
+# Local package required for c7n_mailer tests
+-e tools/c7n_mailer
+# Local package required for c7n_azure tests
+-e tools/c7n_azure
+# Local package required for c7n_gcp tests
+-e tools/c7n_gcp
+# Local package required for c7n_kube tests
+-e tools/c7n_kube
+# Local package required for c7n_org tests
+-e tools/c7n_org
+
+# requires pandoc, fails on ci server, only used for pypi metadata
+# setuptools-markdown==0.2
