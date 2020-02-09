@@ -61,7 +61,7 @@ cust-run:				## Run custodian.  Requires AWS environment credentials.
 		-e AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}" \
 		-e AWS_DEFAULT_REGION="$(REGION)" \
 		-v "$(CURDIR)/logs:/tmp" \
-		"cc56360162cc" \
+		"cloud-custodian:$(VERSION)" \
 		-c "/usr/local/bin/custodian run -c policy.yml -s .; /usr/local/bin/c7n-mailer --config mailer.yml --run"
 
 .PHONY: logs-s3
@@ -71,7 +71,7 @@ logs-s3:				## Run custodian.  Requires AWS environment credentials.
 		-e AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}" \
 		-e AWS_DEFAULT_REGION="$(REGION)" \
 		-v "$(CURDIR)/logs:/tmp" \
-		"cc56360162cc" \
+		"cloud-custodian:$(VERSION)" \
 		-c "/usr/local/bin/custodian run --output-dir s3://"${S3_BUCKET_NAME}"/  policy.yml; /usr/local/bin/c7n-mailer --config mailer.yml --run"
 
 
